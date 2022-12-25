@@ -8,7 +8,7 @@ export default function Custom404() {
     useEffect(() => setPage(router.asPath), [])
 
     return <div className="flex flex-col items-center justify-start">
-                <Image src="/construction.svg" alt="me" width="576" height="480" />
+                <Image src="/construction.svg" alt="me" width="576" height="480" loader={(loaderProps) => loaderProps.src}/>
                 <h2 className='text-2xl font-semibold'>The page {page} is still under construction. Check it out later :D</h2>
             </div>
 }
