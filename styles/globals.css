@@ -57,6 +57,9 @@
   .bm-item-list {
     color: #b8b7ad;
     padding: 0.8em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
   
   /* Individual item */
@@ -67,4 +70,8 @@
   /* Styling of overlay */
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+  }
+
+  #defaultModal {
+    z-index: 1200;
   }

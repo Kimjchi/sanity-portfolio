@@ -34,3 +34,25 @@ export async function getPhotos(): Promise<Photo[]> {
         imageUrl: ""
     }))
 }
+
+export async function getDrawings(): Promise<Photo[]> {
+    const query = `*[_type == "drawing"]| order(_updatedAt desc){
+        _id,
+        _updatedAt,
+        mainImage{
+            asset->{
+                ...,
+                metadata
+            }
+        }
+      }`
+
+    const data: RawPhoto[] = await sanityClient.fetch(query);
+    
+    return data.map((d) => ({
+        id: d._id, 
+        updatedAt: d._updatedAt,
+        image: d.mainImage,
+        imageUrl: ""
+    }))
+}
