@@ -1,11 +1,22 @@
 import React, { ReactElement, useState } from 'react'
 
+export enum ModalSize {
+    "half" = "w-1/2",
+    "full" = "w-full"
+}
 interface ModalProps {
     setIsHidden: (value: boolean) => void;
     children: ReactElement
+    size?: ModalSize
+    isCenteredVertically?: boolean
 }
 
-export default function Modal({setIsHidden, children}: ModalProps) {
+export default function Modal({
+    setIsHidden, 
+    children, 
+    size=ModalSize.full, 
+    isCenteredVertically=false
+}: ModalProps) {
     return (
         <div 
             id="defaultModal" 
@@ -13,8 +24,8 @@ export default function Modal({setIsHidden, children}: ModalProps) {
             className="fixed top-0 left-0 right-0 w-full p-1 sm:p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal h-full bg-gray-500 bg-opacity-50"
             onClick={() => {setIsHidden(true)}}
         >
-        <div className="relative w-full h-full md:h-auto sm:p-5 pt-1">
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div className={`relative ${size} h-full md:h-auto sm:p-5 pt-1 mx-auto ${isCenteredVertically ? "translate-y-2/4" : ""}`}>
+            <div className="relative bg-white rounded-lg shadow">
                 <div className="p-2 space-y-2">
                     {children}
                 </div>                
