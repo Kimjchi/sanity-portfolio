@@ -63,12 +63,12 @@ interface ModalBodyProps {
   
   function ModalBody ({selectedProject}: ModalBodyProps) {
 
-    return <div className='modalBody flex justify-center flex-col text-center px-5 py-8'>
+    return <div className='modalBody flex justify-center flex-col text-center px-5 sm:py-8 py-3'>
         <h2 className='font-semibold text-3xl'>{selectedProject?.title}</h2>
         <div className='py-5 text-sm'>
             {selectedProject?.body.map((data: any) => 
                 data.children.map((child: any) => 
-                    <p>{child.text}</p>
+                    <p key={child._key}>{child.text}</p>
                 )
             )}
         </div>
